@@ -9,11 +9,13 @@ void main() => runApp(const MyApp());
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
+  //TODO: parte 98 del curso
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => DiscoverProvider()),
+        ChangeNotifierProvider(
+            lazy: false, create: (_) => DiscoverProvider()..loadNextPage()),
       ],
       child: MaterialApp(
         title: 'TokTik',
