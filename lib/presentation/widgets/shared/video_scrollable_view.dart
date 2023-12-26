@@ -16,17 +16,21 @@ class VideoScrollableView extends StatelessWidget {
       scrollDirection: Axis.vertical,
       physics: const BouncingScrollPhysics(),
       itemBuilder: (context, index) {
-        final VideoPost videoPost = videos[index];
+        if (index < videos.length) {
+          final VideoPost videoPost = videos[index];
 
-        return Stack(
-          children: [
-            // Video Player + gradient
+          return Stack(
+            children: [
+              // Video Player + gradient
 
-            // Botones
-            Positioned(
-                bottom: 40, right: 20, child: VideoButtons(video: videoPost))
-          ],
-        );
+              // Botones
+              Positioned(
+                  bottom: 40, right: 20, child: VideoButtons(video: videoPost))
+            ],
+          );
+        } else {
+          return Container(); // Retorna un contenedor vacío si el índice no es válido
+        }
       },
     );
   }
